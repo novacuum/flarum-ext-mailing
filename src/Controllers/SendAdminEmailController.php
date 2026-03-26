@@ -62,7 +62,7 @@ class SendAdminEmailController implements RequestHandlerInterface
         if (!in_array(Group::MEMBER_ID, $groupIds)) {
             $userQuery->whereIn('id', $userIds)
                 ->orWhereHas('groups', function (Builder $query) use ($groupIds) {
-                    $query->whereIn('id', $groupIds);
+                    $query->whereIn('groups.id', $groupIds);
                 });
         }
 
